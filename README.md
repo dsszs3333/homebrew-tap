@@ -9,8 +9,11 @@ brew install dsszs3333/tap/gitlab-beacon
 gitlab-beacon --version
 ```
 
-The formula builds v0.1.0 from its pinned source archive and verifies its SHA256.
+The formula builds v0.1.1 from its pinned source archive and verifies its SHA256.
 Homebrew installs Rust as a build dependency. Installation can take several minutes.
+
+Update an existing installation with `brew update` followed by
+`brew upgrade dsszs3333/tap/gitlab-beacon`.
 
 Run `gitlab-beacon` to open the setup wizard, or `gitlab-beacon --help` for CLI commands.
 See the [project README](https://github.com/dsszs3333/gitlab-beacon#readme) for configuration and usage.

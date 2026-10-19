@@ -1,8 +1,8 @@
 class GitlabBeacon < Formula
   desc "Terminal dashboard for GitLab CI/CD pipelines"
   homepage "https://github.com/dsszs3333/gitlab-beacon"
-  url "https://github.com/dsszs3333/gitlab-beacon/archive/refs/tags/v0.1.0.tar.gz"
-  sha256 "8428074465a7311872e823cc07ae604e866ef80758aad1595b95d1f5974f25bf"
+  url "https://github.com/dsszs3333/gitlab-beacon/archive/refs/tags/v0.1.1.tar.gz"
+  sha256 "819a0225fa29a478fc6edac1212975218ab675da8a465a10940daf43df3d74b5"
   license "MIT"
 
   depends_on "rust" => :build
