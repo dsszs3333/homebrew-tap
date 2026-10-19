@@ -15,7 +15,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-24.04]
+        os: [macos-26, ubuntu-24.04]
     runs-on: ${{ matrix.os }}
     timeout-minutes: 30
     env:
@@ -23,24 +23,10 @@ jobs:
       HOMEBREW_NO_INSTALL_CLEANUP: "1"
       HOMEBREW_MAKE_JOBS: "2"
     steps:
-      - name: Diagnose Linux Homebrew setup
-        env:
-          HOMEBREW_GITHUB_API_TOKEN: ${{ github.token }}
-          GITHUB_STATE: ${{ runner.temp }}/homebrew-setup-state
-        run: |
-          script="$RUNNER_TEMP/setup-homebrew.sh"
-          log="$RUNNER_TEMP/setup-homebrew.log"
-          curl --fail --silent --show-error --location https://raw.githubusercontent.com/Homebrew/actions/1f8e202ffddf94def7f42f6fa3a482e821489f9c/setup-homebrew/main.sh --output "$script"
-          if bash "$script" false false false "" true "" true >"$log" 2>&1; then
-            echo '::notice::Homebrew setup succeeded'
-          else
-            detail="$(tail -n 50 "$log")"
-            detail="${detail//'%'/'%25'}"
-            detail="${detail//$'\n'/'%0A'}"
-            detail="${detail//$'\r'/'%0D'}"
-            printf '::error title=Homebrew setup failure::%s\n' "$detail"
-            exit 1
-          fi
+      - name: Set up Homebrew and check out this tap
+        uses: Homebrew/actions/setup-homebrew@1f8e202ffddf94def7f42f6fa3a482e821489f9c # 2026.07.10.1
+        with:
+          stable: true
       - name: Audit formula
         run: brew audit --strict --online dsszs3333/tap/gitlab-beacon
       - name: Install release from source
