@@ -1,0 +1,38 @@
+name: Homebrew
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  install:
+    name: Install and test (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
+    env:
+      HOMEBREW_NO_AUTO_UPDATE: "1"
+      HOMEBREW_NO_INSTALL_CLEANUP: "1"
+      HOMEBREW_MAKE_JOBS: "2"
+    steps:
+      - name: Set up Homebrew and check out this tap
+        uses: Homebrew/actions/setup-homebrew@1f8e202ffddf94def7f42f6fa3a482e821489f9c # 2026.07.10.1
+        with:
+          stable: true
+          setup-sandbox: true
+      - name: Audit formula
+        run: brew audit --strict --online dsszs3333/tap/gitlab-beacon
+      - name: Install release from source
+        run: brew install --build-from-source --no-ask dsszs3333/tap/gitlab-beacon
+      - name: Test installed package
+        run: brew test dsszs3333/tap/gitlab-beacon
+      - name: Check library dependencies
+        run: brew linkage --test dsszs3333/tap/gitlab-beacon
