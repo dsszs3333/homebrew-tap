@@ -28,10 +28,10 @@ jobs:
         with:
           stable: true
       - name: Audit formula
-        run: brew audit --strict --online dsszs3333/tap/gitlab-beacon
+        run: brew audit --strict --online dsszs3333/tap/invocra
       - name: Install release from source
-        run: brew install --build-from-source --no-ask dsszs3333/tap/gitlab-beacon
+        run: brew install --build-from-source --no-ask dsszs3333/tap/invocra
       - name: Test installed package
-        run: brew test dsszs3333/tap/gitlab-beacon
+        run: brew test dsszs3333/tap/invocra
       - name: Check library dependencies
-        run: brew linkage --test dsszs3333/tap/gitlab-beacon
+        run: brew linkage --test dsszs3333/tap/invocra
