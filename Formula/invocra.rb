@@ -1,8 +1,8 @@
 class Invocra < Formula
   desc "Terminal dashboard for GitLab CI/CD pipelines"
   homepage "https://github.com/dsszs3333/invocra"
-  url "https://github.com/dsszs3333/invocra/archive/refs/tags/v0.2.0.tar.gz"
-  sha256 "2c6e42c6d585fbbbb6dc596fce86ec4b73d061940813ec094fed8540847a8ddf"
+  url "https://github.com/dsszs3333/invocra/archive/refs/tags/v0.2.1.tar.gz"
+  sha256 "52c3ed5531c26c158e8ddcc5d692a3749ef215880184a16dbffbcadbf30e01b4"
   license "MIT"
 
   depends_on "rust" => :build
