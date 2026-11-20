@@ -9,7 +9,7 @@ brew install dsszs3333/tap/invocra
 invocra --version
 ```
 
-The formula builds v0.1.0 from its pinned source archive and verifies its SHA256.
+The formula builds the pinned release from its source archive and verifies its SHA256.
 Homebrew installs Rust as a build dependency. Installation can take several minutes.
 
 Update an existing installation with `brew update` followed by
